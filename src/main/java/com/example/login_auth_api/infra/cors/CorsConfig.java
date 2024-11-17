@@ -14,5 +14,12 @@ public class CorsConfig implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
                 .allowCredentials(true);
+
+        // Permite acesso ao H2 Console
+        registry.addMapping("/h2-console/**")
+                .allowedOrigins("http://localhost:4200")
+                .allowedMethods("GET", "POST", "OPTIONS")
+                .allowedHeaders("*")
+                .allowCredentials(true);
     }
 }

@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -34,8 +36,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll() // Altertar aqui apos mudar o banco de dados
                         .anyRequest().authenticated()
                 )
+                .headers().frameOptions().sameOrigin()  // Permite carregar o frame do H2 Console, Alterar apos mudar o Banco de dados para Postgress
+                .and()
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
