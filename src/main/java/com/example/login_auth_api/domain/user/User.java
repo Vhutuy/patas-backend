@@ -1,10 +1,13 @@
 package com.example.login_auth_api.domain.user;
 
+import com.example.login_auth_api.domain.animal.Animal;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -19,4 +22,7 @@ public class User {
     private String name;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Animal> animais; // Lista de animais associados ao usuário
 }
