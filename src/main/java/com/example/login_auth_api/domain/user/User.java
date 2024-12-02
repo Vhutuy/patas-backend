@@ -1,6 +1,7 @@
 package com.example.login_auth_api.domain.user;
 
 import com.example.login_auth_api.domain.animal.Animal;
+import com.example.login_auth_api.domain.pessoa.Pessoa;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,4 +26,8 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Animal> animais; // Lista de animais associados ao usuário
+
+    @OneToOne(mappedBy = "user")
+    private Pessoa pessoa; // Relacionamento com a Pessoa
+
 }
