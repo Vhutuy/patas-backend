@@ -74,6 +74,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 		<artifactId>java-jwt</artifactId>
 		<version>4.4.0</version>
 	</dependency>
+	<dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+		<version>42.7.5</version>
+	</dependency>
 </dependencies>
 
 <build>
