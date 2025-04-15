@@ -13,4 +13,14 @@ public class UserController {
 
     }
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @GetMapping("/uuid/{email}")
+    public ResponseEntity<?> getUserUuidByEmail(@PathVariable String email) {
+        return userRepository.findByEmail(email)
+                .map(user -> ResponseEntity.ok().body("UUID do usuário: " + user.getId()))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }
