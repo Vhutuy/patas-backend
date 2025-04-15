@@ -1,22 +1,25 @@
 package com.example.login_auth_api.controllers;
+
+import com.example.login_auth_api.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @GetMapping
-    public ResponseEntity<String> getUser(){
-        return ResponseEntity.ok("Sucesso!");
-
-    }
 
     @Autowired
     private UserRepository userRepository;
+
+    @GetMapping
+    public ResponseEntity<String> getUser() {
+        return ResponseEntity.ok("Sucesso!");
+    }
 
     @GetMapping("/uuid/{email}")
     public ResponseEntity<?> getUserUuidByEmail(@PathVariable String email) {
@@ -24,5 +27,4 @@ public class UserController {
                 .map(user -> ResponseEntity.ok().body("UUID do usuário: " + user.getId()))
                 .orElse(ResponseEntity.notFound().build());
     }
-
 }
