@@ -27,12 +27,13 @@ public class AnimalController {
         return animalRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Animal> getAnimalById(@PathVariable Long id) {
-        return animalRepository.findById(id)
-                .map(ResponseEntity::ok)
-                .orElseThrow(() -> new EntityNotFoundException("Animal não encontrado com o ID: " + id));
-    }
+@GetMapping("/{id}")
+public ResponseEntity<Animal> getAnimalById(@PathVariable UUID id) {
+    return animalRepository.findById(id)
+            .map(ResponseEntity::ok)
+            .orElseThrow(() -> new EntityNotFoundException("Animal não encontrado com o ID: " + id));
+}
+
 
 
     @PostMapping
