@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
+
 
 @RestController
 @RequestMapping("/animais")
@@ -29,7 +29,7 @@ public class AnimalController {
     }
 
 @GetMapping("/{id}")
-public ResponseEntity<Animal> getAnimalById(@PathVariable UUID id) {
+public ResponseEntity<Animal> getAnimalById(@PathVariable String id) {
     return animalRepository.findById(id)
             .map(ResponseEntity::ok)
             .orElseThrow(() -> new EntityNotFoundException("Animal não encontrado com o ID: " + id));
