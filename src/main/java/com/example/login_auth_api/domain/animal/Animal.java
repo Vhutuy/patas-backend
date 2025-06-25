@@ -5,6 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Data
 @Entity
 @Table(name="animais")
@@ -16,7 +18,7 @@ public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     private String Nome;
 
